@@ -13,7 +13,11 @@ class HomeScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocConsumer<MyshopCubit, MyshopState>(
       listener: (context, state) {
-        // TODO: implement listener
+        if(state is MyshopSuccessChangeFavoriteState){
+          if(!state.model.status!){
+            toastShow(text: state.model.message!, color: Colors.red);
+          }
+        }
       },
       builder: (context, state) {
         var cubitHome = MyshopCubit.get(context).homemodel;

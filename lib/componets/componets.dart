@@ -1,9 +1,12 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:my_shop_app/layout/cubit/cubit.dart';
 import 'package:my_shop_app/models/category_model.dart';
 import 'package:my_shop_app/models/home_model.dart';
 import 'package:my_shop_app/models/login_model.dart';
+import 'package:my_shop_app/network/shared_preference/shared_preference.dart';
+import 'package:my_shop_app/style/color.dart';
 
 ////////// default FormFile//////////
 Widget defaultFormFile({
@@ -93,7 +96,7 @@ void toastShow({required String text, required Color color}) =>
         textColor: Colors.white,
         fontSize: 16.0);
 
-String token = '';
+String token = SharedPreferenceCach.getData(key: 'token');
 
 ////////
 
@@ -209,10 +212,17 @@ Widget buliderProduit(Products modelProduct, context) {
                     ),
                   Spacer(),
                   IconButton(
-                    onPressed: () {},
-                    icon: Icon(
-                      Icons.favorite_border,
-                      size: 20,
+                    onPressed: () {
+                      MyshopCubit.get(context).changFavorite(product_id: modelProduct.id!);
+                    },
+                    icon: CircleAvatar(
+                      radius: 15,
+                      backgroundColor: MyshopCubit.get(context).favorits[modelProduct.id]!? defaultColor :Colors.grey  ,
+                      child: Icon(
+                        Icons.favorite_border,
+                        size: 20,
+                        color: Colors.white,
+                      ),
                     ),
                   ),
                 ],

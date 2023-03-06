@@ -26,21 +26,25 @@ class CategoryScreen extends StatelessWidget {
     );
   }
   Widget builderCategoryItem(DataCategory model) {
-    return Row(
-      children: [
-        Image(
-          image: NetworkImage(model.image!),
-          width: 100,
-          height: 100,
-          fit: BoxFit.cover,
-        ),
-        Text(
-          model.name!,
-          style: TextStyle(fontSize: 24),
-        ),
-        Spacer(),
-        IconButton(onPressed: () {}, icon: Icon(Icons.arrow_forward_ios)),
-      ],
+    return Padding(
+      padding: const EdgeInsets.all(8.0),
+      child: Row(
+        children: [
+          Image(
+            image: NetworkImage(model.image!),
+            width: 100,
+            height: 100,
+            fit: BoxFit.cover,
+          ),
+          SizedBox(width: 20,),
+          Text(
+            model.name!,
+            style: TextStyle(fontSize: 24),
+          ),
+          Spacer(),
+          IconButton(onPressed: () {}, icon: Icon(Icons.arrow_forward_ios)),
+        ],
+      ),
     );
   }
   }

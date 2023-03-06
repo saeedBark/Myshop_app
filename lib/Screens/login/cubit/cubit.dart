@@ -31,9 +31,7 @@ class ShopLoginCubit extends Cubit<ShopLoginState> {
       'password': password,
     }).then((value) {
       model = UserLoginModel.fromJson(value.data);
-     // print(model.data!.email);
-     //  print(model.status);
-     //  print(model.message);
+
       emit(ShopLoginSuccessState(model));
     }).catchError((error) {
       print(error.toString());

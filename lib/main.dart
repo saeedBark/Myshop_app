@@ -20,6 +20,7 @@ void main() async {
 
   bool onBording = SharedPreferenceCach.getData(key: 'onbording');
   String token = SharedPreferenceCach.getData(key: 'token');
+  print(token);
   Widget widget;
   if (onBording != null) {
     if (token != null) {
@@ -48,7 +49,7 @@ class MyShopApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => MyshopCubit()..getDataHome()..getDataCategory(),
+      create: (context) => MyshopCubit()..getDataHome()..getDataCategory()..getFavorites(),
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
 
