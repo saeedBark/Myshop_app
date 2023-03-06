@@ -7,6 +7,7 @@ import 'package:my_shop_app/Screens/products.dart';
 import 'package:my_shop_app/Screens/setting_screen.dart';
 import 'package:my_shop_app/componets/componets.dart';
 import 'package:my_shop_app/layout/cubit/state.dart';
+import 'package:my_shop_app/models/category_model.dart';
 import 'package:my_shop_app/models/home_model.dart';
 import 'package:my_shop_app/network/dio_api/dioApi.dart';
 
@@ -33,17 +34,32 @@ class MyshopCubit extends Cubit<MyshopState> {
     emit(MyshopchangBottomState());
   }
 
-   HomeData? homemodel;
+  HomeData? homemodel;
   void getDataHome() {
     emit(MyshopLoadingGetDataHomeState());
-    DioHelper.getData(url: 'home',token: token).then((value) {
+    DioHelper.getData(url: 'home', token: token).then((value) {
       homemodel = HomeData.fromJson(value.data);
       print(homemodel!.status);
-     print(homemodel!.data!.products[0].name);
+      print(homemodel!.data!.products[0].name);
       emit(MyshopSuccessGetDataHomeState());
     }).catchError((error) {
       print(error.toString());
       emit(MyshopErrorGetDataHomeState());
+    });
+  }
+
+  CategoryModel? categorymodel;
+  void getDataCategory() {
+    DioHelper.getData(
+      url: 'categories',
+    ).then((value) {
+      categorymodel = CategoryModel.fromJson(value.data);
+     print(categorymodel!.data!.current_page);
+     print(categorymodel!.data!.data[2].image);
+      emit(MyshopSuccessGetDataCategoryState());
+    }).catchError((error) {
+      print(error.toString());
+      emit(MyshopErrorGetDataCategoryState());
     });
   }
 }

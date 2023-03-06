@@ -4,6 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:my_shop_app/componets/componets.dart';
 import 'package:my_shop_app/layout/cubit/cubit.dart';
 import 'package:my_shop_app/layout/cubit/state.dart';
+import 'package:my_shop_app/models/category_model.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -15,10 +16,11 @@ class HomeScreen extends StatelessWidget {
         // TODO: implement listener
       },
       builder: (context, state) {
-        var cubit = MyshopCubit.get(context).homemodel;
+        var cubitHome = MyshopCubit.get(context).homemodel;
+        var cubitCategory = MyshopCubit.get(context).categorymodel;
         return ConditionalBuilder(
-          condition: cubit != null,
-          builder: (context) => builderCarouselSlider(cubit!),
+          condition: (cubitHome != null && cubitCategory != null),
+          builder: (context) => builderCarouselSlider(cubitHome! ,cubitCategory!,context),
           fallback: (context) =>
                Center(child: CircularProgressIndicator()),
         );

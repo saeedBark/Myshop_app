@@ -30,13 +30,13 @@ class Banners{
  }
 }
 class Products{
-late  int id;
-late dynamic price;
-late dynamic old_price;
-late  dynamic discount;
-late String name;
-late String image;
-late bool in_favorites;
+  int? id;
+ dynamic? price;
+ dynamic? old_price;
+  dynamic? discount;
+ String? name;
+ String? image;
+ bool? in_favorites;
 Products.fromJson(Map<String,dynamic> json){
   id = json['id'];
   image = json['image'];
