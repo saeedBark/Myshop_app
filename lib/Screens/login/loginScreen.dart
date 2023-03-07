@@ -26,7 +26,7 @@ class LoginScreen extends StatelessWidget {
               SharedPreferenceCach.saveData(
                       key: 'token', value: state.mod.data!.token)
                   .then((value) {
-                //   token = state.mod.data!.token;
+                  token = state.mod.data!.token;
 
                 toastShow(text: state.mod.message!, color: Colors.green);
                 navigatorAndReplace(context, const LayoutScreen());

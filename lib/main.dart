@@ -3,6 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:my_shop_app/Screens/login/loginScreen.dart';
 import 'package:my_shop_app/Screens/onbordingScreen/onbording_screen.dart';
+import 'package:my_shop_app/componets/componets.dart';
 import 'package:my_shop_app/layout/cubit/cubit.dart';
 import 'package:my_shop_app/layout/layout.dart';
 import 'package:my_shop_app/network/dio_api/dioApi.dart';
@@ -19,7 +20,7 @@ void main() async {
 
 
   bool onBording = SharedPreferenceCach.getData(key: 'onbording');
-  String token = SharedPreferenceCach.getData(key: 'token');
+   token = SharedPreferenceCach.getData(key: 'token');
   print(token);
   Widget widget;
   if (onBording != null) {
@@ -49,7 +50,7 @@ class MyShopApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => MyshopCubit()..getDataHome()..getDataCategory()..getFavorites(),
+      create: (context) => MyshopCubit()..getDataHome()..getDataCategory()..getFavorites()..getUserData(),
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
 

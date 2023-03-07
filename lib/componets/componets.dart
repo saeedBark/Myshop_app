@@ -96,7 +96,8 @@ void toastShow({required String text, required Color color}) =>
         textColor: Colors.white,
         fontSize: 16.0);
 
-String token = SharedPreferenceCach.getData(key: 'token');
+dynamic token = '';
+//SharedPreferenceCach.getData(key: 'token');
 
 ////////
 

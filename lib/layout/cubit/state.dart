@@ -31,3 +31,15 @@ class MyshopLoadingGetFavoritesDataState  extends MyshopState{}
 class MyshopSuccessGetFavoritesDataState  extends MyshopState{}
 
 class MyshopErrorGetFavoritesDataState  extends MyshopState{}
+
+class MyshopLoadingUpdateUserState extends MyshopState{}
+
+class MyshopSuccessUpdateUserState extends MyshopState{}
+
+class MyshopErrorUpdateUserState extends MyshopState{}
+
+class MyshopLoadingGetProfileDataState extends MyshopState{}
+
+class MyshopSuccessGetProfileDataState extends MyshopState{}
+
+class MyshopErrorGetProfileDataState extends MyshopState{}

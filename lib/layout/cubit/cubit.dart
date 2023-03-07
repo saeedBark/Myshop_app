@@ -11,6 +11,7 @@ import 'package:my_shop_app/models/category_model.dart';
 import 'package:my_shop_app/models/changeFavorit.dart';
 import 'package:my_shop_app/models/favorite_model.dart';
 import 'package:my_shop_app/models/home_model.dart';
+import 'package:my_shop_app/models/login_model.dart';
 import 'package:my_shop_app/network/dio_api/dioApi.dart';
 
 class MyshopCubit extends Cubit<MyshopState> {
@@ -18,7 +19,7 @@ class MyshopCubit extends Cubit<MyshopState> {
 
   static MyshopCubit get(context) => BlocProvider.of(context);
   int currentIndex = 0;
-  List<Widget> screen = const [
+  List<Widget> screen =  [
     HomeScreen(),
     CategoryScreen(),
     FavoriteScreen(),
@@ -110,4 +111,44 @@ class MyshopCubit extends Cubit<MyshopState> {
       emit(MyshopErrorGetFavoritesDataState());
     });
   }
+   UserLoginModel? updatemodel;
+  void updateUser({
+  required String name,
+    required String email,
+    required String phone,
+
+}) {
+    emit(MyshopLoadingUpdateUserState());
+
+    DioHelper.putData(url: 'update-profile',data: {
+      'name':name,
+      'email':email,
+      'phone':phone,
+    }, token: token).then((value) {
+      updatemodel = UserLoginModel.fromJson(value.data);
+
+      // print(favoritesModel.data!.data![0].product!.name);
+      // print(favoritesModel.data!.data![0].product!.price);
+      emit(MyshopSuccessUpdateUserState());
+    }).catchError((error) {
+      print(error.toString());
+      emit(MyshopErrorUpdateUserState());
+    });
+  }
+  UserLoginModel? update;
+  void getUserData() {
+    emit(MyshopLoadingGetProfileDataState());
+
+    DioHelper.getData(url: 'profile', token: token).then((value) {
+      update = UserLoginModel.fromJson(value.data);
+
+      // print(favoritesModel.data!.data![0].product!.name);
+      // print(favoritesModel.data!.data![0].product!.price);
+      emit(MyshopSuccessGetProfileDataState());
+    }).catchError((error) {
+      print(error.toString());
+      emit(MyshopErrorGetProfileDataState());
+    });
+  }
+
 }

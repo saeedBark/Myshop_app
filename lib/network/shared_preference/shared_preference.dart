@@ -25,7 +25,7 @@ static dynamic getData({
     return await sharedPreference.setBool(key, value);
  }
 
-static Future<dynamic> singOut({
+static Future<dynamic> logout({
   required String key,
 }) async{
  return await sharedPreference.remove(key);
