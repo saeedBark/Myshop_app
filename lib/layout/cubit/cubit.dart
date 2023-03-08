@@ -74,7 +74,7 @@ class MyshopCubit extends Cubit<MyshopState> {
   }
 
   late ChangeFavoritModel changeFavoritModel;
-  void changFavorite({required int product_id}) {
+  void changFavorite( int product_id) {
     favorits[product_id] = !favorits[product_id]!;
     emit(MyshopChangeFavoriteState());
     DioHelper.postData(url: 'favorites', token: token, data: {
