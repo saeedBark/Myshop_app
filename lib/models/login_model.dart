@@ -14,8 +14,8 @@ class Data{
  late String email ;
  late String  phone ;
  late String image ;
- late int points ;
- late  int credit ;
+ late dynamic points ;
+ late  dynamic credit ;
  late  String token;
 
   Data.fromJson(Map<String, dynamic> json) {

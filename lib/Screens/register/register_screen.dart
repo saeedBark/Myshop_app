@@ -1,35 +1,35 @@
 import 'package:conditional_builder_null_safety/conditional_builder_null_safety.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:my_shop_app/Screens/login/cubit/cubit.dart';
-import 'package:my_shop_app/Screens/login/cubit/state.dart';
-import 'package:my_shop_app/Screens/register/register_screen.dart';
+import 'package:my_shop_app/Screens/register/cubit/cubit.dart';
+import 'package:my_shop_app/Screens/register/cubit/state.dart';
 import 'package:my_shop_app/componets/componets.dart';
 import 'package:my_shop_app/layout/layout.dart';
 import 'package:my_shop_app/network/shared_preference/shared_preference.dart';
 import 'package:my_shop_app/style/color.dart';
 import 'package:my_shop_app/widget/navigator.dart';
 
-class LoginScreen extends StatelessWidget {
-  LoginScreen({Key? key}) : super(key: key);
+class RegisterScreen extends StatelessWidget {
+  RegisterScreen({Key? key}) : super(key: key);
   var formkey = GlobalKey<FormState>();
-
   @override
   Widget build(BuildContext context) {
     var emailController = TextEditingController();
     var passwordController = TextEditingController();
+    var namedController = TextEditingController();
+    var phoneController = TextEditingController();
     return BlocProvider(
-      create: (context) => ShopLoginCubit(),
-      child: BlocConsumer<ShopLoginCubit, ShopLoginState>(
+      create: (context) => ShopRegisterCubit(),
+      child: BlocConsumer<ShopRegisterCubit, ShopRegisterState>(
         listener: (context, state) {
-          if (state is ShopLoginSuccessState) {
+          if (state is ShopRegisterSuccessState) {
             if (state.mod.status!) {
               SharedPreferenceCach.saveData(
                       key: 'token', value: state.mod.data!.token)
                   .then((value) {
                 token = state.mod.data!.token;
 
-                toastShow(text: state.mod.message!, color: Colors.green);
+                toastShow(text: state.mod.message!, color: Colors.amber);
                 navigatorAndReplace(context, const LayoutScreen());
               }).catchError((error) {
                 print(error.toString());
@@ -41,7 +41,7 @@ class LoginScreen extends StatelessWidget {
           }
         },
         builder: (context, state) {
-          var cubit = ShopLoginCubit.get(context);
+          var cubit = ShopRegisterCubit.get(context);
           return Scaffold(
             appBar: AppBar(),
             body: Center(
@@ -54,27 +54,35 @@ class LoginScreen extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         defaultText(
-                            text: 'LOGIN',
+                            text: 'REGISTER',
                             fontSize: 24,
                             fontWeidght: FontWeight.bold,
                             color: Color(0xFFD319C2)),
                         SizedBox(
-                          height: 10,
-                        ),
-                        defaultText(
-                            text: 'Please entre your email and password ',
-                            fontSize: 20,
-                            fontWeidght: FontWeight.bold,
-                            color: Colors.grey),
-                        SizedBox(
                           height: 30,
+                        ),
+
+                        defaultFormFile(
+                          controller: namedController,
+                          type: TextInputType.name,
+                          validator: (value) {
+                            if (value.isEmpty) {
+                              return 'Please you must fill your name here..';
+                            }
+                            return null;
+                          },
+                          lable: 'Name',
+                          prefix: Icons.person,
+                        ),
+                        SizedBox(
+                          height: 10,
                         ),
                         defaultFormFile(
                           controller: emailController,
                           type: TextInputType.emailAddress,
                           validator: (value) {
                             if (value.isEmpty) {
-                              return 'Please you must fill email here..';
+                              return 'Please you must fill your email here..';
                             }
                             return null;
                           },
@@ -89,7 +97,7 @@ class LoginScreen extends StatelessWidget {
                           isPassword: cubit.isPassword,
                           validator: (value) {
                             if (value.isEmpty) {
-                              return 'Please you must fill password here..';
+                              return 'Please you must fill your password here..';
                             }
                             return null;
                           },
@@ -101,41 +109,45 @@ class LoginScreen extends StatelessWidget {
                           prefix: Icons.password,
                         ),
                         SizedBox(
+                          height: 10,
+                        ),
+                        defaultFormFile(
+                          controller: phoneController,
+                          type: TextInputType.phone,
+                          validator: (value) {
+                            if (value.isEmpty) {
+                              return 'Please you must fill your phone here..';
+                            }
+                            return null;
+                          },
+                          lable: 'Phone',
+                          prefix: Icons.phone,
+                        ),
+                        SizedBox(
                           height: 30,
                         ),
                         ConditionalBuilder(
-                          condition: state is! ShopLoginLoadingState,
+                          condition: true,
+                          // state is! ShopLoginLoadingState,
                           builder: (context) => defaultButton(
                             fanction: () {
                               if (formkey.currentState!.validate()) {
                                 cubit.userLogin(
                                     email: emailController.text,
-                                    password: passwordController.text);
-                                //  print('saeed');
-                                // navigatorAndReplace(context, LayoutScreen());
+                                    password: passwordController.text,
+                                    name: namedController.text,
+                                    phone: phoneController.text);
+                                  print('saeed');
+                                 //navigatorAndReplace(context, LayoutScreen());
                               }
                             },
-                            text: 'LOgin',
+                            text: 'Register',
                             isUpperCase: true,
                           ),
                           fallback: (context) =>
                               const Center(child: CircularProgressIndicator()),
                         ),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            defaultText(
-                              text: "Don't have alerdy email?",
-                            ),
-                            TextButton(
-                                onPressed: () {
-                                  navigatorAndReplace(
-                                      context, RegisterScreen());
-                                },
-                                child: defaultText(
-                                    text: 'Register', color: defaultColor)),
-                          ],
-                        )
+
                       ],
                     ),
                   ),
