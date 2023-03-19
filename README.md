@@ -1,16 +1,17 @@
 # my_shop_app
 
-A new Flutter project.
+# Introduction:
 
-## Getting Started
+Let me give you a brief overview of the project, Contain an Auth methode (Login - Signup) also profile screen to edit the user profile. there is anther 4 screen: Home screen to show Best selling from products in addition to product and categories also search bar, and as a second screen is a category screen to show the categories, also The Favoriets Screen to show the product what the user like it, Finally, The setting screen.
 
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+# This Project Created use :
+- Sign-In, Sign-Up and Log_out using Email & Password .
+- Categories and Search for Products.
+- Add/Remove Products to/from favoriets.
+- Edit your account information and upload image at Profile section.
+- Check your Favorites History.
+- Using Responsive UI.
+- Using Api (DIO), Sheard prefrence.
+- Using Cubit as state management.
+- Using MVC as Architect Design.
+# ScreenShots
