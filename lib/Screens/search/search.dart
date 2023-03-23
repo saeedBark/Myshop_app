@@ -1,4 +1,4 @@
-import 'package:conditional_builder_null_safety/conditional_builder_null_safety.dart';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:my_shop_app/Screens/search/cubit/cubit.dart';
@@ -12,8 +12,6 @@ class SearchScreen extends StatelessWidget {
   var formkey = GlobalKey<FormState>();
   @override
   Widget build(BuildContext context) {
-    var fromKey = GlobalKey<FormState>();
-    var searchContrller = TextEditingController();
     return BlocProvider(
       create: (context) => SearchShopCubit(),
       child: BlocConsumer<SearchShopCubit, SearchShopState>(
@@ -24,13 +22,13 @@ class SearchScreen extends StatelessWidget {
           return Scaffold(
             appBar: AppBar(),
             body: Form(
-              key: fromKey,
+              key: formkey,
               child: Padding(
                 padding: const EdgeInsets.all(20.0),
                 child: Column(
                   children: [
                     defaultFormFile(
-                      controller: searchContrller,
+                      controller: searchController,
                       type: TextInputType.text,
                       validator: (String value) {
                         if (value.isEmpty) {
@@ -41,14 +39,15 @@ class SearchScreen extends StatelessWidget {
                       onsubmit: (String text) {
                         SearchShopCubit.get(context).searchProduct(text);
                       },
+
                       lable: 'Search',
                       prefix: Icons.search,
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 12,
                     ),
-                    if (state is SearchLoadingState) LinearProgressIndicator(),
-                    SizedBox(
+                    if (state is SearchLoadingState) const LinearProgressIndicator(),
+                    const SizedBox(
                       height: 12,
                     ),
                     if (state is SearchSuccessState)
@@ -61,11 +60,10 @@ class SearchScreen extends StatelessWidget {
                                     .data[index],
                                 context,
                                 inSearch: false),
-                            separatorBuilder: (context, index) => Divider(thickness: 1,height: 1,),
+                            separatorBuilder: (context, index) => const Divider(thickness: 1,height: 1,),
                             itemCount: SearchShopCubit.get(context)
                                 .model!
-                                .data!
-                                .data
+                                .data!.data
                                 .length),
                       ),
                   ],

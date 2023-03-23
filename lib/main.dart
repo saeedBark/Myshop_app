@@ -19,20 +19,21 @@ void main() async {
   await SharedPreferenceCach.inti();
 
 
-  bool onBording = SharedPreferenceCach.getData(key: 'onbording');
+  var onBording = SharedPreferenceCach.getData(key: 'onbording');
    token = SharedPreferenceCach.getData(key: 'token');
   print(token);
   Widget widget;
   if (onBording != null) {
     if (token != null) {
       // LayoutScreen widget;
-      widget = LayoutScreen();
+      widget = const LayoutScreen();
     }
     else {
-      widget = LoginScreen();
+      widget = const OnboardingScreen();
+
     }
   } else {
-    widget = OnboardingScreen();
+    widget = LoginScreen();
   }
 
   runApp(MyShopApp(widgets: widget,));
@@ -53,8 +54,6 @@ class MyShopApp extends StatelessWidget {
       create: (context) => MyshopCubit()..getDataHome()..getDataCategory()..getFavorites()..getUserData(),
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
-
-
         theme: ThemeData(
           appBarTheme: const AppBarTheme(
               backgroundColor: Colors.white,

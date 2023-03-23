@@ -1,4 +1,4 @@
-import 'package:carousel_slider/carousel_slider.dart';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:my_shop_app/Screens/search/search.dart';
@@ -19,11 +19,11 @@ class LayoutScreen extends StatelessWidget {
         var cubit = MyshopCubit.get(context);
         return Scaffold(
           appBar: AppBar(
-            title: Text('Shop'),
+            title: const Text('Shop'),
             actions: [
               IconButton(onPressed: (){
                 navigatorAndReplace(context, SearchScreen());
-              }, icon: Icon(Icons.search)),
+              }, icon: const Icon(Icons.search)),
             ],
           ),
           body: cubit.screen[cubit.currentIndex],

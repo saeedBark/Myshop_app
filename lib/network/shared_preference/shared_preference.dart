@@ -20,9 +20,11 @@ static dynamic getData({
 }) async{
   if(value is int) return await sharedPreference.setInt(key, value);
   if(value is String) return await sharedPreference.setString(key, value);
-  if(value is double) return await sharedPreference.setDouble(key, value);
-  else
+  if(value is double) {
+    return await sharedPreference.setDouble(key, value);
+  } else {
     return await sharedPreference.setBool(key, value);
+  }
  }
 
 static Future<dynamic> logout({

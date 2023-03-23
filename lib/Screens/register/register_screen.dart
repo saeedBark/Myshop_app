@@ -57,8 +57,8 @@ class RegisterScreen extends StatelessWidget {
                             text: 'REGISTER',
                             fontSize: 24,
                             fontWeidght: FontWeight.bold,
-                            color: Color(0xFFD319C2)),
-                        SizedBox(
+                            color: const Color(0xFFD319C2)),
+                        const SizedBox(
                           height: 30,
                         ),
 
@@ -74,7 +74,7 @@ class RegisterScreen extends StatelessWidget {
                           lable: 'Name',
                           prefix: Icons.person,
                         ),
-                        SizedBox(
+                        const SizedBox(
                           height: 10,
                         ),
                         defaultFormFile(
@@ -89,7 +89,7 @@ class RegisterScreen extends StatelessWidget {
                           lable: 'Email',
                           prefix: Icons.email,
                         ),
-                        SizedBox(
+                        const SizedBox(
                           height: 10,
                         ),
                         defaultFormFile(
@@ -108,7 +108,7 @@ class RegisterScreen extends StatelessWidget {
                           lable: 'Password',
                           prefix: Icons.password,
                         ),
-                        SizedBox(
+                        const SizedBox(
                           height: 10,
                         ),
                         defaultFormFile(
@@ -123,7 +123,7 @@ class RegisterScreen extends StatelessWidget {
                           lable: 'Phone',
                           prefix: Icons.phone,
                         ),
-                        SizedBox(
+                        const SizedBox(
                           height: 30,
                         ),
                         ConditionalBuilder(

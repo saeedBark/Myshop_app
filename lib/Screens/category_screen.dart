@@ -17,7 +17,7 @@ class CategoryScreen extends StatelessWidget {
         var cubit = MyshopCubit.get(context).categorymodel!.data!.data;
         return ListView.separated(
             itemBuilder: (context, index) => builderCategoryItem(cubit[index]),
-            separatorBuilder: (context, index) => Divider(
+            separatorBuilder: (context, index) => const Divider(
               // thickness: 1,
               // height: 1,
             ),
@@ -36,13 +36,13 @@ class CategoryScreen extends StatelessWidget {
             height: 100,
             fit: BoxFit.cover,
           ),
-          SizedBox(width: 20,),
+          const SizedBox(width: 20,),
           Text(
             model.name!,
-            style: TextStyle(fontSize: 24),
+            style: const TextStyle(fontSize: 24),
           ),
-          Spacer(),
-          IconButton(onPressed: () {}, icon: Icon(Icons.arrow_forward_ios)),
+          const Spacer(),
+          IconButton(onPressed: () {}, icon: const Icon(Icons.arrow_forward_ios)),
         ],
       ),
     );

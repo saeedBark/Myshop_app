@@ -3,10 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:my_shop_app/layout/cubit/cubit.dart';
 import 'package:my_shop_app/models/category_model.dart';
-import 'package:my_shop_app/models/favorite_model.dart';
 import 'package:my_shop_app/models/home_model.dart';
-import 'package:my_shop_app/models/login_model.dart';
-import 'package:my_shop_app/models/search_model.dart';
 import 'package:my_shop_app/network/shared_preference/shared_preference.dart';
 import 'package:my_shop_app/style/color.dart';
 
@@ -39,7 +36,9 @@ Widget defaultFormFile({
         labelText: lable,
         prefixIcon: Icon(prefix),
         suffixIcon: suffix != null ? Icon(suffix) : null,
-        border: OutlineInputBorder(),
+        border: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(15),
+        ),
       ),
     );
 ////////////////
@@ -61,7 +60,7 @@ Widget defaultButton({
       },
       child: Text(
         isUpperCase ? text.toUpperCase() : text,
-        style: TextStyle(color: Colors.white),
+        style: const TextStyle(color: Colors.white),
       ),
     ),
     decoration: BoxDecoration(
@@ -98,14 +97,14 @@ void toastShow({required String text, required Color color}) =>
         textColor: Colors.white,
         fontSize: 16.0);
 
-dynamic token = '';
+dynamic token = SharedPreferenceCach.getData(key: 'token');
 //SharedPreferenceCach.getData(key: 'token');
 
 ////////
 
 Widget builderCarouselSlider(HomeData model,CategoryModel modelCate ,context) {
   return SingleChildScrollView(
-    physics: BouncingScrollPhysics(),
+    physics: const BouncingScrollPhysics(),
     child: Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -126,33 +125,33 @@ Widget builderCarouselSlider(HomeData model,CategoryModel modelCate ,context) {
             enableInfiniteScroll: true,
             reverse: false,
             autoPlay: true,
-            autoPlayInterval: Duration(seconds: 3),
-            autoPlayAnimationDuration: Duration(seconds: 1),
+            autoPlayInterval: const Duration(seconds: 3),
+            autoPlayAnimationDuration: const Duration(seconds: 1),
             autoPlayCurve: Curves.fastOutSlowIn,
             scrollDirection: Axis.horizontal,
           ),
         ),
-        SizedBox(height: 5,),
-        Text('Categories',style: TextStyle(fontSize: 24,fontWeight: FontWeight.bold),),
-        SizedBox(height: 10,),
+        const SizedBox(height: 5,),
+        const Text('Categories',style: TextStyle(fontSize: 24,fontWeight: FontWeight.bold),),
+        const SizedBox(height: 10,),
 
         Container(
           height: 100,
           child: ListView.separated(
             scrollDirection: Axis.horizontal,
-              physics: BouncingScrollPhysics(),
+              physics: const BouncingScrollPhysics(),
               itemBuilder: (context,index) => builderCategory(modelCate.data!.data[index],context),
-              separatorBuilder: (context,index) =>SizedBox(width: 15,),
+              separatorBuilder: (context,index) =>const SizedBox(width: 15,),
               itemCount: modelCate.data!.data.length,
           ),
         ),
-        SizedBox(
+        const SizedBox(
           height: 5,
         ),
-        Text('Products',style: TextStyle(fontSize: 24,fontWeight: FontWeight.bold),),
+        const Text('Products',style: TextStyle(fontSize: 24,fontWeight: FontWeight.bold),),
         GridView.count(
             shrinkWrap: true,
-            physics: NeverScrollableScrollPhysics(),
+            physics: const NeverScrollableScrollPhysics(),
             crossAxisCount: 2,
             mainAxisSpacing: 10,
             crossAxisSpacing: 10,
@@ -184,9 +183,9 @@ Widget buliderProduit(Products modelProduct, context) {
             ),
             if(modelProduct.discount != 0)
             Container(
-              padding: EdgeInsets.symmetric(horizontal: 10,),
+              padding: const EdgeInsets.symmetric(horizontal: 10,),
               color: Colors.red,
-                child: Text('DUSCOUNT',style: TextStyle(color: Colors.white),),),
+                child: const Text('DUSCOUNT',style: TextStyle(color: Colors.white),),),
           ],
         ),
         Padding(
@@ -195,25 +194,25 @@ Widget buliderProduit(Products modelProduct, context) {
             children: [
               Text(
                 modelProduct.name!,
-                style: TextStyle(fontSize: 16),
+                style: const TextStyle(fontSize: 16),
                 maxLines: 2,
                 overflow: TextOverflow.ellipsis,
               ),
-              SizedBox(height: 5,),
+              const SizedBox(height: 5,),
               Row(
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   Text(modelProduct.price.toString()),
-                  SizedBox(
+                  const SizedBox(
                     width: 5,
                   ),
                   if (modelProduct.discount != 0)
                     Text(
                       modelProduct.old_price.toString(),
-                      style: TextStyle(
+                      style: const TextStyle(
                           color: Colors.grey, decoration: TextDecoration.lineThrough),
                     ),
-                  Spacer(),
+                  const Spacer(),
                   IconButton(
                     onPressed: () {
                       MyshopCubit.get(context).changFavorite( modelProduct.id!);
@@ -221,7 +220,7 @@ Widget buliderProduit(Products modelProduct, context) {
                     icon: CircleAvatar(
                       radius: 15,
                       backgroundColor: MyshopCubit.get(context).favorits[modelProduct.id]!? defaultColor :Colors.grey  ,
-                      child: Icon(
+                      child: const Icon(
                         Icons.favorite_border,
                         size: 20,
                         color: Colors.white,
@@ -247,7 +246,7 @@ Widget builderCategory(DataCategory model,context){
      Container(
        width: 100,
        color: Colors.black.withOpacity(0.7),
-         child: Text(model.name!,style: TextStyle(color: Colors.white),textAlign: TextAlign.center),),
+         child: Text(model.name!,style: const TextStyle(color: Colors.white),textAlign: TextAlign.center),),
    ],
  );
 
@@ -268,9 +267,9 @@ Widget buildProductItems( model, context,{bool inSearch=true} ) => Padding(
             ),
             if((model.discount) != 0&&inSearch)
               Container(
-                padding: EdgeInsets.symmetric(horizontal: 5),
+                padding: const EdgeInsets.symmetric(horizontal: 5),
                 color: Colors.red,
-                child: Text('Discount',
+                child: const Text('Discount',
                   style: TextStyle(
                       fontSize: 10,
                       color: Colors.white
@@ -279,7 +278,7 @@ Widget buildProductItems( model, context,{bool inSearch=true} ) => Padding(
               ),
           ],
         ),
-        SizedBox(
+        const SizedBox(
           width: 20,
         ),
         Expanded(
@@ -289,36 +288,36 @@ Widget buildProductItems( model, context,{bool inSearch=true} ) => Padding(
               Text((model.name)!,
                 maxLines: 2,
                 overflow: TextOverflow.ellipsis,
-                style: TextStyle(
+                style: const TextStyle(
                   height: 1.3,
                 ),
               ),
-              Spacer(),
+              const Spacer(),
               Row(
                 children: [
                   Text((model.price.toString()),
-                    style: TextStyle(
+                    style: const TextStyle(
                         fontSize: 12,
                         color: defaultColor
                     ),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     width: 5,
                   ),
                   if((model.discount) != 0&&inSearch)
                     Text(model.discount.toString(),
-                      style: TextStyle(
+                      style: const TextStyle(
                         fontSize: 10,
                         color: Colors.grey,
                         decoration: TextDecoration.lineThrough,
                       ),
                     ),
-                  Spacer(),
+                  const Spacer(),
 
                   IconButton(
                     onPressed: () {
                       MyshopCubit.get(context).changFavorite(
-                          (model.id)!
+                          model.id!
                       );
                       // print(model.id);
                     },
@@ -329,7 +328,7 @@ Widget buildProductItems( model, context,{bool inSearch=true} ) => Padding(
                             ? defaultColor
                             : Colors.grey,
                         radius: 15,
-                        child: Icon(Icons.favorite_border,
+                        child: const Icon(Icons.favorite_border,
                           color: Colors.white,
                           size: 14,
                         )

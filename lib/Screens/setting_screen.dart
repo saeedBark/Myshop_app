@@ -5,7 +5,6 @@ import 'package:my_shop_app/Screens/login/loginScreen.dart';
 import 'package:my_shop_app/componets/componets.dart';
 import 'package:my_shop_app/layout/cubit/cubit.dart';
 import 'package:my_shop_app/layout/cubit/state.dart';
-import 'package:my_shop_app/network/dio_api/dioApi.dart';
 import 'package:my_shop_app/network/shared_preference/shared_preference.dart';
 import 'package:my_shop_app/widget/navigator.dart';
 
@@ -39,8 +38,8 @@ class SettingScreen extends StatelessWidget {
               builder:(context) => ListView(
                 children: [
                   if(state is MyshopSuccessUpdateUserState)
-                  LinearProgressIndicator(),
-                  SizedBox(height: 10,),
+                  const LinearProgressIndicator(),
+                  const SizedBox(height: 10,),
                   defaultFormFile(
                       controller: nameController,
                       lable: 'User Name',
@@ -53,7 +52,7 @@ class SettingScreen extends StatelessWidget {
                         return null;
                       }
                   ),
-                  SizedBox(height: 10,),
+                  const SizedBox(height: 10,),
                   defaultFormFile(
                       controller: emailController,
                       lable: 'Email',
@@ -66,7 +65,7 @@ class SettingScreen extends StatelessWidget {
                         return null;
                       }
                   ),
-                  SizedBox(height: 10,),
+                  const SizedBox(height: 10,),
                   defaultFormFile(
                       controller: phoneController,
                       lable: 'Phone',
@@ -79,7 +78,7 @@ class SettingScreen extends StatelessWidget {
                         return null;
                       }
                   ),
-                  SizedBox(height: 20,),
+                  const SizedBox(height: 20,),
                   defaultButton(fanction: (){
                     if(formkey.currentState!.validate()){
                       MyshopCubit.get(context).updateUser(
@@ -89,7 +88,7 @@ class SettingScreen extends StatelessWidget {
                       );
                     }
                   }, text: 'Update'),
-                  SizedBox(height: 20,),
+                  const SizedBox(height: 20,),
                   defaultButton(fanction: (){
                     SharedPreferenceCach.logout(key: 'token').then((value) {
                       navigatorAndReplace(context, LoginScreen());
@@ -97,7 +96,7 @@ class SettingScreen extends StatelessWidget {
                   }, text: 'Logout'),
                 ],
               ),
-              fallback: (context) => Center(child: CircularProgressIndicator()),
+              fallback: (context) => const Center(child: CircularProgressIndicator()),
             ),
           ),
         );

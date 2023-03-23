@@ -1,8 +1,8 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:my_shop_app/Screens/search/cubit/state.dart';
-import 'package:my_shop_app/componets/componets.dart';
 import 'package:my_shop_app/models/search_model.dart';
 import 'package:my_shop_app/network/dio_api/dioApi.dart';
+import 'package:my_shop_app/network/shared_preference/shared_preference.dart';
 
 class SearchShopCubit extends Cubit<SearchShopState> {
   SearchShopCubit() : super(SearchInitialState());
@@ -12,7 +12,7 @@ class SearchShopCubit extends Cubit<SearchShopState> {
   SearchModel? model;
   void searchProduct(String text){
     emit(SearchLoadingState());
-    DioHelper.postData(url: 'products/search', token: token,data: {
+    DioHelper.postData(url: 'products/search', token: SharedPreferenceCach.getData(key: 'token'),data: {
       'text': text,
     }).then((value) {
       model = SearchModel.fromJson(value.data);

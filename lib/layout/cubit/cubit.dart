@@ -49,7 +49,6 @@ class MyshopCubit extends Cubit<MyshopState> {
         });
       });
       print(favorits);
-      // print(homemodel!.status);
       // print(homemodel!.data!.products[0].name);
       emit(MyshopSuccessGetDataHomeState());
     }).catchError((error) {
@@ -65,7 +64,7 @@ class MyshopCubit extends Cubit<MyshopState> {
     ).then((value) {
       categorymodel = CategoryModel.fromJson(value.data);
       // print(categorymodel!.data!.current_page);
-      // print(categorymodel!.data!.data[2].image);
+
       emit(MyshopSuccessGetDataCategoryState());
     }).catchError((error) {
       print(error.toString());
@@ -81,14 +80,17 @@ class MyshopCubit extends Cubit<MyshopState> {
       'product_id': product_id,
     }).then((value) {
       changeFavoritModel = ChangeFavoritModel.fromJson(value.data);
+
       // print(changeFavoritModel.status);
-      // print(changeFavoritModel.message);
+
       if (!changeFavoritModel.status!) {
         favorits[product_id] = !favorits[product_id]!;
       }else{
         getFavorites();
+
       }
       emit(MyshopSuccessChangeFavoriteState(changeFavoritModel));
+
     }).catchError((error) {
       favorits[product_id] = !favorits[product_id]!;
       print(error.toString());
@@ -104,7 +106,7 @@ class MyshopCubit extends Cubit<MyshopState> {
       favoritesModel = FavoritesModel.fromJson(value.data);
 
       // print(favoritesModel.data!.data![0].product!.name);
-      // print(favoritesModel.data!.data![0].product!.price);
+
       emit(MyshopSuccessGetFavoritesDataState());
     }).catchError((error) {
       print(error.toString());
@@ -128,7 +130,7 @@ class MyshopCubit extends Cubit<MyshopState> {
       updatemodel = UserLoginModel.fromJson(value.data);
 
       // print(favoritesModel.data!.data![0].product!.name);
-      // print(favoritesModel.data!.data![0].product!.price);
+
       emit(MyshopSuccessUpdateUserState());
     }).catchError((error) {
       print(error.toString());

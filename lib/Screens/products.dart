@@ -4,7 +4,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:my_shop_app/componets/componets.dart';
 import 'package:my_shop_app/layout/cubit/cubit.dart';
 import 'package:my_shop_app/layout/cubit/state.dart';
-import 'package:my_shop_app/models/category_model.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -17,6 +16,7 @@ class HomeScreen extends StatelessWidget {
           if(!state.model.status!){
             toastShow(text: state.model.message!, color: Colors.red);
           }
+
         }
       },
       builder: (context, state) {
@@ -26,7 +26,7 @@ class HomeScreen extends StatelessWidget {
           condition: (cubitHome != null && cubitCategory != null),
           builder: (context) => builderCarouselSlider(cubitHome! ,cubitCategory!,context),
           fallback: (context) =>
-               Center(child: CircularProgressIndicator()),
+               const Center(child: CircularProgressIndicator()),
         );
       },
     );
