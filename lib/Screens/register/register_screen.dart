@@ -51,7 +51,7 @@ class RegisterScreen extends StatelessWidget {
                   child: Form(
                     key: formkey,
                     child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
+                      crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
                         defaultText(
                             text: 'REGISTER',
