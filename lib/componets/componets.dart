@@ -119,7 +119,7 @@ Widget builderCarouselSlider(HomeData model,CategoryModel modelCate ,context) {
               )
               .toList(),
           options: CarouselOptions(
-            height: 250,
+            height: 300,
             initialPage: 0,
             viewportFraction: 1.0,
             enableInfiniteScroll: true,
