@@ -11,7 +11,7 @@ import 'package:my_shop_app/widget/navigator.dart';
 
 class RegisterScreen extends StatelessWidget {
   RegisterScreen({Key? key}) : super(key: key);
-  var formkey = GlobalKey<FormState>();
+  final formkey = GlobalKey<FormState>();
   @override
   Widget build(BuildContext context) {
     var emailController = TextEditingController();

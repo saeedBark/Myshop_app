@@ -29,7 +29,7 @@ void main() async {
       widget = const LayoutScreen();
     }
     else {
-      widget = const OnboardingScreen();
+      widget = const OnBoardingScreen();
 
     }
   } else {

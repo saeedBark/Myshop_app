@@ -45,7 +45,7 @@ class MyshopCubit extends Cubit<MyshopState> {
       homemodel = HomeData.fromJson(value.data);
       homemodel!.data!.products.forEach((element) {
         favorits.addAll({
-          element.id!: element.in_favorites!,
+          element.id!: element.inFavorites!,
         });
       });
       print(favorits);
@@ -57,12 +57,12 @@ class MyshopCubit extends Cubit<MyshopState> {
     });
   }
 
-  CategoryModel? categorymodel;
+  CategoryModel? categoryModel;
   void getDataCategory() {
     DioHelper.getData(
       url: 'categories',
     ).then((value) {
-      categorymodel = CategoryModel.fromJson(value.data);
+      categoryModel = CategoryModel.fromJson(value.data);
       // print(categorymodel!.data!.current_page);
 
       emit(MyshopSuccessGetDataCategoryState());

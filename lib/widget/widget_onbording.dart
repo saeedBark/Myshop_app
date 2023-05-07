@@ -5,10 +5,10 @@ import 'package:my_shop_app/models/onbording_model.dart';
     return  Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Expanded(child: Image.asset('${model.image}',)),
-        SizedBox(height: 20,),
-        Text('${model.title}',style: TextStyle(fontSize: 24,fontWeight: FontWeight.bold),),
-        SizedBox(height: 20,),
-        Text('${model.bodytitle} ',style: TextStyle(fontSize: 24,),),
+        Expanded(child: Image.asset(model.image,)),
+        const SizedBox(height: 20,),
+        Text(model.title,style: const TextStyle(fontSize: 24,fontWeight: FontWeight.bold),),
+        const SizedBox(height: 20,),
+        Text('${model.bodyTitle} ',style: const TextStyle(fontSize: 24,),),
       ],);
   }

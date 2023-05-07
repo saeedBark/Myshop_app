@@ -1,7 +1,7 @@
 class OnbordingModel {
   late String image;
   late String title;
-  late String bodytitle;
+  late String bodyTitle;
 
-  OnbordingModel(this.image, this.title, this.bodytitle);
+  OnbordingModel(this.image, this.title, this.bodyTitle);
 }

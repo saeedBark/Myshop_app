@@ -10,11 +10,11 @@ import 'package:my_shop_app/widget/navigator.dart';
 
 class SettingScreen extends StatelessWidget {
   SettingScreen({Key? key}) : super(key: key);
-  var nameController = TextEditingController();
-  var emailController = TextEditingController();
-  var phoneController = TextEditingController();
+  final nameController = TextEditingController();
+  final emailController = TextEditingController();
+  final phoneController = TextEditingController();
 
-  var formkey = GlobalKey<FormState>();
+  final formkey = GlobalKey<FormState>();
 
   @override
   Widget build(BuildContext context) {

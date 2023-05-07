@@ -208,7 +208,7 @@ Widget buliderProduit(Products modelProduct, context) {
                   ),
                   if (modelProduct.discount != 0)
                     Text(
-                      modelProduct.old_price.toString(),
+                      modelProduct.oldPrice.toString(),
                       style: const TextStyle(
                           color: Colors.grey, decoration: TextDecoration.lineThrough),
                     ),

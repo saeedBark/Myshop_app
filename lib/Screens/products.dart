@@ -21,7 +21,7 @@ class HomeScreen extends StatelessWidget {
       },
       builder: (context, state) {
         var cubitHome = MyshopCubit.get(context).homemodel;
-        var cubitCategory = MyshopCubit.get(context).categorymodel;
+        var cubitCategory = MyshopCubit.get(context).categoryModel;
         return ConditionalBuilder(
           condition: (cubitHome != null && cubitCategory != null),
           builder: (context) => builderCarouselSlider(cubitHome! ,cubitCategory!,context),

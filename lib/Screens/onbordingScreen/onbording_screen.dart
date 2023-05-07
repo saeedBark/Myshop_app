@@ -1,20 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:my_shop_app/Screens/login/loginScreen.dart';
-import 'package:my_shop_app/models/login_model.dart';
 import 'package:my_shop_app/models/onbording_model.dart';
 import 'package:my_shop_app/network/shared_preference/shared_preference.dart';
 import 'package:my_shop_app/widget/navigator.dart';
 import 'package:my_shop_app/widget/widget_onbording.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
-class OnboardingScreen extends StatefulWidget {
-  const OnboardingScreen({Key? key}) : super(key: key);
+class OnBoardingScreen extends StatefulWidget {
+  const OnBoardingScreen({Key? key}) : super(key: key);
 
   @override
-  State<OnboardingScreen> createState() => _OnboardingScreenState();
+  State<OnBoardingScreen> createState() => _OnBoardingScreenState();
 }
 
-class _OnboardingScreenState extends State<OnboardingScreen> {
+class _OnBoardingScreenState extends State<OnBoardingScreen> {
   bool isLast = false;
 
   void saveOnbordingAndNavigat(){
@@ -52,7 +51,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
               style: Theme.of(context)
                   .textTheme
                   .titleLarge!
-                  .copyWith(color: Color(0xFFD319C2)),
+                  .copyWith(color: const Color(0xFFD319C2)),
             ),
           ),
         ],
@@ -84,7 +83,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                 },
               ),
             ),
-            SizedBox(
+            const SizedBox(
               height: 30,
             ),
             Row(
@@ -105,7 +104,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                     activeDotColor: Color(0xFFD319C2),
                   ),
                 ),
-                Spacer(),
+                const Spacer(),
                 FloatingActionButton(
                   onPressed: () {
                     if(isLast == true) {
@@ -114,12 +113,12 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                     } else {
                       print('hiiii');
                       controllerJumb.nextPage(
-                          duration: Duration(milliseconds: 750),
+                          duration: const Duration(milliseconds: 750),
                           curve: Curves.decelerate);
                    //   navigatorAndReplace(context, LoginScreen());
                     }
                   },
-                  child: Icon(Icons.arrow_forward_ios),
+                  child: const Icon(Icons.arrow_forward_ios),
                 ),
               ],
             )

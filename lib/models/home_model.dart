@@ -31,20 +31,20 @@ class Banners{
 }
 class Products{
   int? id;
- dynamic? price;
- dynamic? old_price;
-  dynamic? discount;
+ dynamic price;
+ dynamic oldPrice;
+  dynamic discount;
  String? name;
  String? image;
- bool? in_favorites;
+ bool? inFavorites;
 Products.fromJson(Map<String,dynamic> json){
   id = json['id'];
   image = json['image'];
   price= json['price'];
-  old_price= json['old_price'];
+  oldPrice= json['old_price'];
   discount= json['discount'];
   name= json['name'];
-  in_favorites= json['in_favorites'];
+  inFavorites= json['in_favorites'];
 }
 
 }
