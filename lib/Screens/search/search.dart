@@ -4,12 +4,13 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:my_shop_app/Screens/search/cubit/cubit.dart';
 import 'package:my_shop_app/Screens/search/cubit/state.dart';
 import 'package:my_shop_app/componets/componets.dart';
+import 'package:my_shop_app/widget/default_text_form.dart';
 
 
 class SearchScreen extends StatelessWidget {
   SearchScreen({Key? key}) : super(key: key);
-  var searchController = TextEditingController();
-  var formkey = GlobalKey<FormState>();
+  final searchController = TextEditingController();
+  final formkey = GlobalKey<FormState>();
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
@@ -27,7 +28,7 @@ class SearchScreen extends StatelessWidget {
                 padding: const EdgeInsets.all(20.0),
                 child: Column(
                   children: [
-                    defaultFormFile(
+                    DefaultTextForm(
                       controller: searchController,
                       type: TextInputType.text,
                       validator: (String value) {

@@ -6,7 +6,8 @@ import 'package:my_shop_app/Screens/register/cubit/state.dart';
 import 'package:my_shop_app/componets/componets.dart';
 import 'package:my_shop_app/layout/layout.dart';
 import 'package:my_shop_app/network/shared_preference/shared_preference.dart';
-import 'package:my_shop_app/style/color.dart';
+import 'package:my_shop_app/widget/default_button.dart';
+import 'package:my_shop_app/widget/default_text_form.dart';
 import 'package:my_shop_app/widget/navigator.dart';
 
 class RegisterScreen extends StatelessWidget {
@@ -62,7 +63,7 @@ class RegisterScreen extends StatelessWidget {
                           height: 30,
                         ),
 
-                        defaultFormFile(
+                        DefaultTextForm(
                           controller: namedController,
                           type: TextInputType.name,
                           validator: (value) {
@@ -77,7 +78,7 @@ class RegisterScreen extends StatelessWidget {
                         const SizedBox(
                           height: 10,
                         ),
-                        defaultFormFile(
+                        DefaultTextForm(
                           controller: emailController,
                           type: TextInputType.emailAddress,
                           validator: (value) {
@@ -92,7 +93,7 @@ class RegisterScreen extends StatelessWidget {
                         const SizedBox(
                           height: 10,
                         ),
-                        defaultFormFile(
+                        DefaultTextForm(
                           controller: passwordController,
                           isPassword: cubit.isPassword,
                           validator: (value) {
@@ -111,7 +112,7 @@ class RegisterScreen extends StatelessWidget {
                         const SizedBox(
                           height: 10,
                         ),
-                        defaultFormFile(
+                        DefaultTextForm(
                           controller: phoneController,
                           type: TextInputType.phone,
                           validator: (value) {
@@ -129,8 +130,8 @@ class RegisterScreen extends StatelessWidget {
                         ConditionalBuilder(
                           condition: true,
                           // state is! ShopLoginLoadingState,
-                          builder: (context) => defaultButton(
-                            fanction: () {
+                          builder: (context) => DefaultButton(
+                            function: () {
                               if (formkey.currentState!.validate()) {
                                 cubit.userLogin(
                                     email: emailController.text,

@@ -2,10 +2,11 @@ import 'package:conditional_builder_null_safety/conditional_builder_null_safety.
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:my_shop_app/Screens/login/loginScreen.dart';
-import 'package:my_shop_app/componets/componets.dart';
 import 'package:my_shop_app/layout/cubit/cubit.dart';
 import 'package:my_shop_app/layout/cubit/state.dart';
 import 'package:my_shop_app/network/shared_preference/shared_preference.dart';
+import 'package:my_shop_app/widget/default_button.dart';
+import 'package:my_shop_app/widget/default_text_form.dart';
 import 'package:my_shop_app/widget/navigator.dart';
 
 class SettingScreen extends StatelessWidget {
@@ -40,7 +41,7 @@ class SettingScreen extends StatelessWidget {
                   if(state is MyshopSuccessUpdateUserState)
                   const LinearProgressIndicator(),
                   const SizedBox(height: 10,),
-                  defaultFormFile(
+                  DefaultTextForm(
                       controller: nameController,
                       lable: 'User Name',
                       prefix: Icons.person,
@@ -53,7 +54,7 @@ class SettingScreen extends StatelessWidget {
                       }
                   ),
                   const SizedBox(height: 10,),
-                  defaultFormFile(
+                  DefaultTextForm(
                       controller: emailController,
                       lable: 'Email',
                       prefix: Icons.email,
@@ -66,7 +67,7 @@ class SettingScreen extends StatelessWidget {
                       }
                   ),
                   const SizedBox(height: 10,),
-                  defaultFormFile(
+                  DefaultTextForm(
                       controller: phoneController,
                       lable: 'Phone',
                       prefix: Icons.phone,
@@ -79,7 +80,7 @@ class SettingScreen extends StatelessWidget {
                       }
                   ),
                   const SizedBox(height: 20,),
-                  defaultButton(fanction: (){
+                  DefaultButton(function: (){
                     if(formkey.currentState!.validate()){
                       MyshopCubit.get(context).updateUser(
                           name: nameController.text,
@@ -89,7 +90,7 @@ class SettingScreen extends StatelessWidget {
                     }
                   }, text: 'Update'),
                   const SizedBox(height: 20,),
-                  defaultButton(fanction: (){
+                  DefaultButton(function: (){
                     SharedPreferenceCach.logout(key: 'token').then((value) {
                       navigatorAndReplace(context, LoginScreen());
                     });

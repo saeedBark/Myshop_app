@@ -7,69 +7,11 @@ import 'package:my_shop_app/models/home_model.dart';
 import 'package:my_shop_app/network/shared_preference/shared_preference.dart';
 import 'package:my_shop_app/style/color.dart';
 
-////////// default FormFile//////////
-Widget defaultFormFile({
-  required TextEditingController controller,
-  Function? onsubmit,
-  required String lable,
-  required IconData prefix,
-  Function()? onTap,
-  TextInputType? type,
-  required Function validator,
-  IconData? suffix,
-  bool enable = true,
-  bool isPassword = false,
-}) =>
-    TextFormField(
-      controller: controller,
-      obscureText: isPassword,
-      keyboardType: type,
-      onFieldSubmitted: (d) {
-        onsubmit!(d);
-      },
-      validator: (value) => validator(value),
-      onTap: () {
-        onTap!();
-      },
-      enabled: enable,
-      decoration: InputDecoration(
-        labelText: lable,
-        prefixIcon: Icon(prefix),
-        suffixIcon: suffix != null ? Icon(suffix) : null,
-        border: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(15),
-        ),
-      ),
-    );
+
 ////////////////
 
-Widget defaultButton({
-  Color color = const Color(0xFFD319C2),
-  double width = double.infinity,
-  double raduis = 15,
-  bool isUpperCase = true,
-  required Function fanction,
-  required String text,
-}) {
-  return Container(
-    height: 40,
-    width: width,
-    child: MaterialButton(
-      onPressed: () {
-        fanction();
-      },
-      child: Text(
-        isUpperCase ? text.toUpperCase() : text,
-        style: const TextStyle(color: Colors.white),
-      ),
-    ),
-    decoration: BoxDecoration(
-      borderRadius: BorderRadius.circular(raduis),
-      color: color,
-    ),
-  );
-}
-/////////
+
+
 
 Widget defaultText(
     {required String text,
