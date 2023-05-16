@@ -48,4 +48,16 @@ class CategoryScreen extends StatelessWidget {
     );
   }
   }
+Widget builderCategory(DataCategory model,context){
+  return Stack(
+    alignment: Alignment.bottomCenter,
+    children: [
+      Image(image: NetworkImage(model.image!),height: 100,width: 100,),
+      Container(
+        width: 100,
+        color: Colors.black.withOpacity(0.7),
+        child: Text(model.name!,style: const TextStyle(color: Colors.white),textAlign: TextAlign.center),),
+    ],
+  );
 
+}
