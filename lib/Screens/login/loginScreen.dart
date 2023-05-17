@@ -11,6 +11,7 @@ import 'package:my_shop_app/style/color.dart';
 import 'package:my_shop_app/widget/default_button.dart';
 import 'package:my_shop_app/widget/default_text_form.dart';
 import 'package:my_shop_app/widget/navigator.dart';
+import 'package:my_shop_app/widget/text.dart';
 
 class LoginScreen extends StatelessWidget {
   LoginScreen({Key? key}) : super(key: key);
@@ -54,15 +55,15 @@ class LoginScreen extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.center,
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      defaultText(
+                      const DefaultText(
                           text: 'LOGIN',
                           fontSize: 24,
                           fontWeidght: FontWeight.bold,
-                          color: const Color(0xFFD319C2)),
+                          color: Color(0xFFD319C2)),
                       const SizedBox(
                         height: 10,
                       ),
-                      defaultText(
+                      const DefaultText(
                           text: 'Please entre your email and password ',
                           fontSize: 20,
                           fontWeidght: FontWeight.bold,
@@ -125,14 +126,14 @@ class LoginScreen extends StatelessWidget {
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          defaultText(
+                          const DefaultText(
                             text: "Don't have alerdy email?",
                           ),
                           TextButton(
                               onPressed: () {
                                 navigatorAndReplace(context, RegisterScreen());
                               },
-                              child: defaultText(
+                              child: const DefaultText(
                                   text: 'Register', color: defaultColor)),
                         ],
                       ),

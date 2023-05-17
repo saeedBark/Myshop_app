@@ -1,32 +1,15 @@
-import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:my_shop_app/layout/cubit/cubit.dart';
-import 'package:my_shop_app/models/category_model.dart';
-import 'package:my_shop_app/models/home_model.dart';
 import 'package:my_shop_app/network/shared_preference/shared_preference.dart';
 import 'package:my_shop_app/style/color.dart';
 
 
-////////////////
 
 
 
 
-Widget defaultText(
-    {required String text,
-    double? fontSize,
-    FontWeight? fontWeidght,
-    Color? color}) {
-  return Text(
-    text,
-    style: TextStyle(
-      color: color,
-      fontWeight: fontWeidght,
-      fontSize: fontSize,
-    ),
-  );
-}
+
 /////////////Toast Show ///////
 
 void toastShow({required String text, required Color color}) =>
@@ -135,76 +118,3 @@ Widget buildProductItems( model, context,{bool inSearch=true} ) => Padding(
     ),
   ),
 );
-// Widget builderProductItem( model,context,{bool isOldPrice = true}) =>  Container(
-//   height: 130,
-//   child: Row(
-//     crossAxisAlignment: CrossAxisAlignment.start,
-//     children: [
-//       Stack(
-//         alignment: Alignment.bottomLeft,
-//         children: [
-//           Image(
-//             image: NetworkImage(model.image!),
-//             width: 100,
-//             height: 100,
-//             //  fit: BoxFit.cover,
-//           ),
-//           if(model.discount != 0 && isOldPrice)
-//             Container(
-//               padding: const EdgeInsets.symmetric(horizontal: 10,),
-//               color: Colors.red,
-//               child: const Text('DUSCOUNT',style: TextStyle(color: Colors.white),),),
-//         ],
-//       ),
-//       const SizedBox(width: 15,),
-//       Expanded(
-//         child: Padding(
-//           padding: const EdgeInsets.all(8.0),
-//           child: Column(
-//             children: [
-//               Text(
-//                 model.name!,
-//                 style: const TextStyle(fontSize: 16),
-//                 maxLines: 2,
-//                 overflow: TextOverflow.ellipsis,
-//               ),
-//               const SizedBox(height: 5,),
-//               Row(
-//                 crossAxisAlignment: CrossAxisAlignment.center,
-//                 children: [
-//                   Text(
-//                       model.price.toString()
-//                   ),
-//                   const SizedBox(
-//                     width: 5,
-//                   ),
-//                   if (model.discount != 0  && isOldPrice)
-//                     Text(
-//                       model.oldPrice.toString(),
-//                       style: const TextStyle(
-//                           color: Colors.grey, decoration: TextDecoration.lineThrough),
-//                     ),
-//                   const Spacer(),
-//                   IconButton(
-//                     onPressed: () {
-//                       MyshopCubit.get(context).changFavorite( model.id!);
-//                     },
-//                     icon: CircleAvatar(
-//                       radius: 15,
-//                       backgroundColor:MyshopCubit.get(context).favorits[model.id]! ? defaultColor :Colors.grey  ,
-//                       child: const Icon(
-//                         Icons.favorite_border,
-//                         size: 20,
-//                         color: Colors.white,
-//                       ),
-//                     ),
-//                   ),
-//                 ],
-//               ),
-//             ],
-//           ),
-//         ),
-//       ),
-//     ],
-//   ),
-// );

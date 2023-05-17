@@ -9,6 +9,7 @@ import 'package:my_shop_app/network/shared_preference/shared_preference.dart';
 import 'package:my_shop_app/widget/default_button.dart';
 import 'package:my_shop_app/widget/default_text_form.dart';
 import 'package:my_shop_app/widget/navigator.dart';
+import 'package:my_shop_app/widget/text.dart';
 
 class RegisterScreen extends StatelessWidget {
   RegisterScreen({Key? key}) : super(key: key);
@@ -54,11 +55,11 @@ class RegisterScreen extends StatelessWidget {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
-                        defaultText(
+                        const DefaultText(
                             text: 'REGISTER',
                             fontSize: 24,
                             fontWeidght: FontWeight.bold,
-                            color: const Color(0xFFD319C2)),
+                            color: Color(0xFFD319C2)),
                         const SizedBox(
                           height: 30,
                         ),
