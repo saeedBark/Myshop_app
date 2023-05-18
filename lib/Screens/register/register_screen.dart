@@ -12,14 +12,9 @@ import 'package:my_shop_app/widget/navigator.dart';
 import 'package:my_shop_app/widget/text.dart';
 
 class RegisterScreen extends StatelessWidget {
-  RegisterScreen({Key? key}) : super(key: key);
-  final formkey = GlobalKey<FormState>();
+  const RegisterScreen({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
-    var emailController = TextEditingController();
-    var passwordController = TextEditingController();
-    var namedController = TextEditingController();
-    var phoneController = TextEditingController();
     return BlocProvider(
       create: (context) => ShopRegisterCubit(),
       child: BlocConsumer<ShopRegisterCubit, ShopRegisterState>(
@@ -43,121 +38,126 @@ class RegisterScreen extends StatelessWidget {
           }
         },
         builder: (context, state) {
-          var cubit = ShopRegisterCubit.get(context);
           return Scaffold(
             appBar: AppBar(),
-            body: Center(
-              child: SingleChildScrollView(
-                child: Padding(
-                  padding: const EdgeInsets.all(20.0),
-                  child: Form(
-                    key: formkey,
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: [
-                        const DefaultText(
-                            text: 'REGISTER',
-                            fontSize: 24,
-                            fontWeidght: FontWeight.bold,
-                            color: Color(0xFFD319C2)),
-                        const SizedBox(
-                          height: 30,
-                        ),
-
-                        DefaultTextForm(
-                          controller: namedController,
-                          type: TextInputType.name,
-                          validator: (value) {
-                            if (value.isEmpty) {
-                              return 'Please you must fill your name here..';
-                            }
-                            return null;
-                          },
-                          lable: 'Name',
-                          prefix: Icons.person,
-                        ),
-                        const SizedBox(
-                          height: 10,
-                        ),
-                        DefaultTextForm(
-                          controller: emailController,
-                          type: TextInputType.emailAddress,
-                          validator: (value) {
-                            if (value.isEmpty) {
-                              return 'Please you must fill your email here..';
-                            }
-                            return null;
-                          },
-                          lable: 'Email',
-                          prefix: Icons.email,
-                        ),
-                        const SizedBox(
-                          height: 10,
-                        ),
-                        DefaultTextForm(
-                          controller: passwordController,
-                          isPassword: cubit.isPassword,
-                          validator: (value) {
-                            if (value.isEmpty) {
-                              return 'Please you must fill your password here..';
-                            }
-                            return null;
-                          },
-                          suffix: cubit.suffix,
-                          onTap: () {
-                            cubit.changPasswordShow();
-                          },
-                          lable: 'Password',
-                          prefix: Icons.password,
-                        ),
-                        const SizedBox(
-                          height: 10,
-                        ),
-                        DefaultTextForm(
-                          controller: phoneController,
-                          type: TextInputType.phone,
-                          validator: (value) {
-                            if (value.isEmpty) {
-                              return 'Please you must fill your phone here..';
-                            }
-                            return null;
-                          },
-                          lable: 'Phone',
-                          prefix: Icons.phone,
-                        ),
-                        const SizedBox(
-                          height: 30,
-                        ),
-                        ConditionalBuilder(
-                          condition: true,
-                          // state is! ShopLoginLoadingState,
-                          builder: (context) => DefaultButton(
-                            function: () {
-                              if (formkey.currentState!.validate()) {
-                                cubit.userLogin(
-                                    email: emailController.text,
-                                    password: passwordController.text,
-                                    name: namedController.text,
-                                    phone: phoneController.text);
-                                  print('saeed');
-                                 //navigatorAndReplace(context, LayoutScreen());
-                              }
-                            },
-                            text: 'Register',
-                            isUpperCase: true,
-                          ),
-                          fallback: (context) =>
-                              const Center(child: CircularProgressIndicator()),
-                        ),
-
-                      ],
-                    ),
-                  ),
-                ),
-              ),
-            ),
+            body: const RegisterForm(),
           );
         },
+      ),
+    );
+  }
+}
+
+class RegisterForm extends StatelessWidget {
+  const RegisterForm({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    final cubit = ShopRegisterCubit.get(context);
+    return Center(
+      child: SingleChildScrollView(
+        child: Padding(
+          padding: const EdgeInsets.all(20.0),
+          child: Form(
+            key: cubit.formkey,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                const DefaultText(
+                    text: 'REGISTER',
+                    fontSize: 24,
+                    fontWeidght: FontWeight.bold,
+                    color: Color(0xFFD319C2)),
+                const SizedBox(
+                  height: 30,
+                ),
+                DefaultTextForm(
+                  controller: cubit.namedController,
+                  type: TextInputType.name,
+                  validator: (value) {
+                    if (value.isEmpty) {
+                      return 'Please you must fill your name here..';
+                    }
+                    return null;
+                  },
+                  lable: 'Name',
+                  prefix: Icons.person,
+                ),
+                const SizedBox(
+                  height: 10,
+                ),
+                DefaultTextForm(
+                  controller: cubit.emailController,
+                  type: TextInputType.emailAddress,
+                  validator: (value) {
+                    if (value.isEmpty) {
+                      return 'Please you must fill your email here..';
+                    }
+                    return null;
+                  },
+                  lable: 'Email',
+                  prefix: Icons.email,
+                ),
+                const SizedBox(
+                  height: 10,
+                ),
+                DefaultTextForm(
+                  controller: cubit.passwordController,
+                  isPassword: cubit.isPassword,
+                  validator: (value) {
+                    if (value.isEmpty) {
+                      return 'Please you must fill your password here..';
+                    }
+                    return null;
+                  },
+                  suffix: cubit.suffix,
+                  onTap: () {
+                    cubit.changPasswordShow();
+                  },
+                  lable: 'Password',
+                  prefix: Icons.password,
+                ),
+                const SizedBox(
+                  height: 10,
+                ),
+                DefaultTextForm(
+                  controller: cubit.phoneController,
+                  type: TextInputType.phone,
+                  validator: (value) {
+                    if (value.isEmpty) {
+                      return 'Please you must fill your phone here..';
+                    }
+                    return null;
+                  },
+                  lable: 'Phone',
+                  prefix: Icons.phone,
+                ),
+                const SizedBox(
+                  height: 30,
+                ),
+                ConditionalBuilder(
+                  condition: true,
+                  // state is! ShopLoginLoadingState,
+                  builder: (context) => DefaultButton(
+                    function: () {
+                      if (cubit.formkey.currentState!.validate()) {
+                        cubit.userLogin(
+                            email: cubit.emailController.text,
+                            password: cubit.passwordController.text,
+                            name: cubit.namedController.text,
+                            phone: cubit.phoneController.text);
+                      }
+                    },
+                    text: 'Register',
+                    isUpperCase: true,
+                  ),
+                  fallback: (context) =>
+                      const Center(child: CircularProgressIndicator()),
+                ),
+              ],
+            ),
+          ),
+        ),
       ),
     );
   }

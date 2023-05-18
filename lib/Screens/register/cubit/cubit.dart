@@ -8,7 +8,11 @@ class ShopRegisterCubit extends Cubit<ShopRegisterState> {
   ShopRegisterCubit() : super(ShopRegisterInitialState());
 
   static ShopRegisterCubit get(context) => BlocProvider.of(context);
-
+  final emailController = TextEditingController();
+  final passwordController = TextEditingController();
+  final namedController = TextEditingController();
+  final phoneController = TextEditingController();
+  final formkey = GlobalKey<FormState>();
   IconData suffix = Icons.visibility_outlined;
   bool isPassword = true;
   void changPasswordShow() {

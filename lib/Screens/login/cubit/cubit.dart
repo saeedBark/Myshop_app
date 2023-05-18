@@ -1,4 +1,3 @@
-import 'package:bloc/bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:my_shop_app/Screens/login/cubit/state.dart';
@@ -10,6 +9,9 @@ class ShopLoginCubit extends Cubit<ShopLoginState> {
 
   static ShopLoginCubit get(context) => BlocProvider.of(context);
 
+  final formkey = GlobalKey<FormState>();
+  final emailController = TextEditingController();
+  final passwordController = TextEditingController();
   IconData suffix = Icons.visibility_outlined;
   bool isPassword = true;
   void changPasswordShow() {
@@ -20,7 +22,7 @@ class ShopLoginCubit extends Cubit<ShopLoginState> {
     emit(ShopLoginChangePasswordShowState());
   }
 
-  late UserLoginModel model;
+   UserLoginModel? model;
   void userLogin({
     required email,
     required password,
@@ -32,7 +34,7 @@ class ShopLoginCubit extends Cubit<ShopLoginState> {
     }).then((value) {
       model = UserLoginModel.fromJson(value.data);
 
-      emit(ShopLoginSuccessState(model));
+      emit(ShopLoginSuccessState(model!));
     }).catchError((error) {
       print(error.toString());
       emit(ShopLoginErrorState(error.toString()));
