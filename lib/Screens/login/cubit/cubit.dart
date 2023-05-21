@@ -12,6 +12,7 @@ class ShopLoginCubit extends Cubit<ShopLoginState> {
   final formkey = GlobalKey<FormState>();
   final emailController = TextEditingController();
   final passwordController = TextEditingController();
+  bool isLoading = false;
   IconData suffix = Icons.visibility_outlined;
   bool isPassword = true;
   void changPasswordShow() {
@@ -27,13 +28,14 @@ class ShopLoginCubit extends Cubit<ShopLoginState> {
     required email,
     required password,
   }) {
+    isLoading = false ;
     emit(ShopLoginLoadingState());
     DioHelper.postData(url: 'login', data: {
       'email': email,
       'password': password,
     }).then((value) {
       model = UserLoginModel.fromJson(value.data);
-
+        isLoading = true;
       emit(ShopLoginSuccessState(model!));
     }).catchError((error) {
       print(error.toString());

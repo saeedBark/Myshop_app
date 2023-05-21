@@ -32,7 +32,6 @@ class RegisterScreen extends StatelessWidget {
                 print(error.toString());
               });
             } else {
-              // print(state.mod.message!);
               toastShow(text: state.mod.message!, color: Colors.red);
             }
           }

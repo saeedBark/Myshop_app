@@ -4,14 +4,6 @@ import 'package:my_shop_app/layout/cubit/cubit.dart';
 import 'package:my_shop_app/network/shared_preference/shared_preference.dart';
 import 'package:my_shop_app/style/color.dart';
 
-
-
-
-
-
-
-/////////////Toast Show ///////
-
 void toastShow({required String text, required Color color}) =>
     Fluttertoast.showToast(
         msg: text,
@@ -24,12 +16,10 @@ void toastShow({required String text, required Color color}) =>
 
 dynamic token = SharedPreferenceCach.getData(key: 'token');
 //SharedPreferenceCach.getData(key: 'token');
-
-
 /////////builder item search and favorites//////////
 Widget buildProductItems( model, context,{bool inSearch=true} ) => Padding(
   padding: const EdgeInsets.all(20.0),
-  child: Container(
+  child: SizedBox(
     height: 120,
     child: Row(
       children: [

@@ -19,7 +19,7 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
   void saveOnbordingAndNavigat(){
   SharedPreferenceCach.saveData(key: 'onbording', value: true).then((value) {
     if(value) {
-      navigatorAndReplace(context, LoginScreen());
+      navigatorAndReplace(context, const LoginScreen());
     }
   }).catchError((error){
     print(error.toString());
