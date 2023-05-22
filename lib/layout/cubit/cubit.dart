@@ -20,9 +20,9 @@ class MyshopCubit extends Cubit<MyshopState> {
   static MyshopCubit get(context) => BlocProvider.of(context);
   int currentIndex = 0;
   List<Widget> screen =  [
-    HomeScreen(),
-    CategoryScreen(),
-    FavoriteScreen(),
+    const HomeScreen(),
+    const CategoryScreen(),
+    const FavoriteScreen(),
     SettingScreen(),
   ];
 
@@ -43,13 +43,12 @@ class MyshopCubit extends Cubit<MyshopState> {
     emit(MyshopLoadingGetDataHomeState());
     DioHelper.getData(url: 'home', token: token).then((value) {
       homemodel = HomeData.fromJson(value.data);
-      homemodel!.data!.products.forEach((element) {
+      for (var element in homemodel!.data!.products) {
         favorits.addAll({
           element.id!: element.inFavorites!,
         });
-      });
+      }
       print(favorits);
-      // print(homemodel!.data!.products[0].name);
       emit(MyshopSuccessGetDataHomeState());
     }).catchError((error) {
       print(error.toString());
@@ -63,7 +62,6 @@ class MyshopCubit extends Cubit<MyshopState> {
       url: 'categories',
     ).then((value) {
       categoryModel = CategoryModel.fromJson(value.data);
-      // print(categorymodel!.data!.current_page);
 
       emit(MyshopSuccessGetDataCategoryState());
     }).catchError((error) {
@@ -145,7 +143,6 @@ class MyshopCubit extends Cubit<MyshopState> {
       update = UserLoginModel.fromJson(value.data);
 
       // print(favoritesModel.data!.data![0].product!.name);
-      // print(favoritesModel.data!.data![0].product!.price);
       emit(MyshopSuccessGetProfileDataState());
     }).catchError((error) {
       print(error.toString());
