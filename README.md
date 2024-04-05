@@ -2,7 +2,15 @@
 
 # Introduction:
 
-Let me give you a brief overview of the project, Contain an Auth methode (Login - Signup) also profile screen to edit the user profile. there is anther 4 screen: Home screen to show Best selling from products in addition to product and categories also search bar, and as a second screen is a category screen to show the categories, also The Favoriets Screen to show the product what the user like it, Finally, The setting screen.
+
+Allow me to provide a concise summary of the project. It encompasses an authentication feature comprising both login and signup functionalities, along with a profile screen for users to modify their profiles. Additionally, there are four other screens:
+
+Home screen, showcasing best-selling products, as well as product listings, categories, and a search bar.
+Category screen, displaying various product categories.
+Favorites screen, exhibiting products that users have marked as favorites.
+Lastly, the Settings screen.
+
+
 
 # This Project Created use :
 - Sign-In, Sign-Up and Log_out using Email & Password .
